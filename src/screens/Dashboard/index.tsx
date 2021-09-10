@@ -1,6 +1,6 @@
 import React from "react";
 
-import HighlightCard from "../../components/HighlightCard";
+import { HighlightCard } from "../../components/HighlightCard";
 
 import {
   Container,
@@ -12,9 +12,10 @@ import {
   UserName,
   UserWrapper,
   Icon,
+  HighlightCards,
 } from "./styles";
 
-const Dashboard: React.FC = () => {
+export function Dashboard() {
   return (
     <Container>
       <Header>
@@ -34,10 +35,26 @@ const Dashboard: React.FC = () => {
           <Icon name="power" />
         </UserWrapper>
       </Header>
-
-      <HighlightCard />
+      <HighlightCards>
+        <HighlightCard
+          type="up"
+          title="Entradas"
+          amount="17.000,00"
+          lastTransaction="Última entrada no dia 6 de abril"
+        />
+        <HighlightCard
+          type="down"
+          title="Saídas"
+          amount="5.000,00"
+          lastTransaction="Última saída no dia 17 de abril"
+        />
+        <HighlightCard
+          type="total"
+          title="Total"
+          amount="12.000,00"
+          lastTransaction="Abril 2021"
+        />
+      </HighlightCards>
     </Container>
   );
-};
-
-export default Dashboard;
+}
