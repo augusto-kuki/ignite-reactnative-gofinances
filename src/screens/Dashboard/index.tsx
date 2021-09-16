@@ -1,6 +1,11 @@
 import React from "react";
+import { getBottomSpace } from "react-native-iphone-x-helper";
 
 import { HighlightCard } from "../../components/HighlightCard";
+import {
+  TransactionCard,
+  TransactionCardProps,
+} from "../../components/TransactionCard";
 
 import {
   Container,
@@ -13,9 +18,47 @@ import {
   UserWrapper,
   Icon,
   HighlightCards,
+  Transactions,
+  Title,
+  TransactionsList,
 } from "./styles";
 
 export function Dashboard() {
+  const data: Array<TransactionCardProps> = [
+    {
+      id: "1",
+      type: "positive",
+      title: "Desenvolvimento de site",
+      amount: "R$ 17.000,00",
+      category: {
+        name: "Desenvolvimento",
+        icon: "dollar-sign",
+      },
+      date: "10/02/2021",
+    },
+    {
+      id: "2",
+      type: "positive",
+      title: "Aluguel",
+      amount: "R$ 1.000,00",
+      category: {
+        name: "Moradia",
+        icon: "home",
+      },
+      date: "10/02/2021",
+    },
+    {
+      id: "3",
+      type: "negative",
+      title: "Mercado",
+      amount: "R$ 500,00",
+      category: {
+        name: "Mercado",
+        icon: "shopping-cart",
+      },
+      date: "12/02/2021",
+    },
+  ];
   return (
     <Container>
       <Header>
@@ -55,6 +98,18 @@ export function Dashboard() {
           lastTransaction="Abril 2021"
         />
       </HighlightCards>
+
+      <Transactions>
+        <Title>Transações</Title>
+
+        <TransactionsList
+          data={data}
+          keyExtractor={(item: TransactionCardProps) => item.id}
+          renderItem={({ item }) => {
+            return <TransactionCard data={item} />;
+          }}
+        />
+      </Transactions>
     </Container>
   );
 }
